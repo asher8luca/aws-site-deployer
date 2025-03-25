@@ -10,8 +10,10 @@ read -p "Please enter your Telegram Bot Token: " BOT_TOKEN
 read -p "Please enter your Telegram Chat ID: " CHAT_ID
 read -p "Please enter the GitHub repository URL (e.g., https://github.com/your-username/your-repo.git): " SITE_REPO
 
-# Clone or pull script repo
+# Clone or pull the script repo
 REPO_NAME=$(basename "$SITE_REPO" .git)
+
+# Check if the repo already exists
 if [ -d "$REPO_NAME" ]; then
   echo "📁 Repo already exists. Pulling latest changes..."
   cd "$REPO_NAME"
@@ -29,7 +31,7 @@ if [ -f "$REPO_NAME/cloudfront_static_site_setup.sh" ]; then
   sed -i "s|^ACCOUNT_ID=.*|ACCOUNT_ID=\"$ACCOUNT_ID\"|" "$REPO_NAME/cloudfront_static_site_setup.sh"
 fi
 
-# Replace bot credentials
+# Replace bot credentials in Telegram bot script
 if [ -f "$REPO_NAME/telegram_deploy_bot.py" ]; then
   sed -i "s|BOT_TOKEN = .*|BOT_TOKEN = \"$BOT_TOKEN\"|" "$REPO_NAME/telegram_deploy_bot.py"
   sed -i "s|CHAT_ID = .*|CHAT_ID = \"$CHAT_ID\"|" "$REPO_NAME/telegram_deploy_bot.py"
