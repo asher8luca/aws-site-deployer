@@ -56,3 +56,12 @@ echo ""
 echo "✅ Setup complete!"
 echo "📱 Use Telegram commands: /start /deploy /lock /unlock /update_phone /status /logs"
 echo "🧠 Don't forget to update your domain registrar with the Route 53 nameservers!"
+
+
+
+echo "DOMAIN: $DOMAIN"
+echo "SUBDOMAIN: $SUBDOMAIN"
+echo "ACCOUNT_ID: $ACCOUNT_ID"
+echo "BOT_TOKEN: $BOT_TOKEN"
+echo "CHAT_ID: $CHAT_ID"
+echo "SITE_REPO: $SITE_REPO"
