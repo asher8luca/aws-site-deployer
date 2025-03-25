@@ -2,17 +2,16 @@
 
 echo "🌐 Starting full setup from GitHub..."
 
-# Load env vars from config file
-CONFIG_FILE="./deploy-config.env"
-if [ ! -f "$CONFIG_FILE" ]; then
-  echo "❌ Config file $CONFIG_FILE not found!"
-  exit 1
-fi
-echo "📄 Loading configuration from $CONFIG_FILE"
-source "$CONFIG_FILE"
+# Prompt user for input directly
+read -p "Please enter your domain (e.g., message-de-support-spp-fr.online): " DOMAIN
+read -p "Please enter your subdomain (e.g., www.message-de-support-spp-fr.online): " SUBDOMAIN
+read -p "Please enter your AWS Account ID: " ACCOUNT_ID
+read -p "Please enter your Telegram Bot Token: " BOT_TOKEN
+read -p "Please enter your Telegram Chat ID: " CHAT_ID
+read -p "Please enter the GitHub repository URL (e.g., https://github.com/your-username/your-repo.git): " SITE_REPO
 
 # Clone or pull script repo
-REPO_NAME=$(basename "$GITHUB_REPO_URL" .git)
+REPO_NAME=$(basename "$SITE_REPO" .git)
 if [ -d "$REPO_NAME" ]; then
   echo "📁 Repo already exists. Pulling latest changes..."
   cd "$REPO_NAME"
@@ -20,7 +19,7 @@ if [ -d "$REPO_NAME" ]; then
   cd ..
 else
   echo "📥 Cloning repo..."
-  git clone "$GITHUB_REPO_URL"
+  git clone "$SITE_REPO"
 fi
 
 # Inject domain settings into deploy script
@@ -56,8 +55,6 @@ echo ""
 echo "✅ Setup complete!"
 echo "📱 Use Telegram commands: /start /deploy /lock /unlock /update_phone /status /logs"
 echo "🧠 Don't forget to update your domain registrar with the Route 53 nameservers!"
-
-
 
 echo "DOMAIN: $DOMAIN"
 echo "SUBDOMAIN: $SUBDOMAIN"
