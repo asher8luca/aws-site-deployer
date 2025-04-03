@@ -14,11 +14,13 @@ else
 fi
 
 # --- Configurable Setup (Do not prompt if .env file exists) ---
-echo "Looking for .env in: /home/cloudshell-user/support-deployer-site/.env"  # Added for debugging
-if [ -f "$HOME/$DEPLOY_DIR/.env" ]; then
+# Use absolute path to avoid issues with $HOME and relative paths
+ENV_FILE="/home/cloudshell-user/$DEPLOY_DIR/.env"
+echo "Looking for .env in: $ENV_FILE"  # Added for debugging
+if [ -f "$ENV_FILE" ]; then
   # Load the existing .env file from the correct path
-  source "$HOME/$DEPLOY_DIR/.env"
-  echo "📦 Loaded existing config from $HOME/$DEPLOY_DIR/.env"
+  source "$ENV_FILE"
+  echo "📦 Loaded existing config from $ENV_FILE"
 else
   echo "⚠️ .env file not found in repository! Exiting..."
   exit 1
