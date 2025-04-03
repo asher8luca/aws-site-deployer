@@ -15,8 +15,10 @@ fi
 
 # --- Configurable Setup (Do not prompt if .env file exists) ---
 # Use absolute path to avoid issues with $HOME and relative paths
-ENV_FILE="/home/cloudshell-user/$DEPLOY_DIR/.env"
-echo "Looking for .env in: $ENV_FILE"  # Added for debugging
+ENV_FILE="./.env"  # Change this to the relative path for the .env file
+echo "Looking for .env at: $ENV_FILE"  # Added for debugging
+
+# Check if the .env file exists and load it
 if [ -f "$ENV_FILE" ]; then
   # Load the existing .env file from the correct path
   source "$ENV_FILE"
@@ -25,6 +27,11 @@ else
   echo "⚠️ .env file not found in repository! Exiting..."
   exit 1
 fi
+
+# Debugging the loaded environment variables
+echo "DOMAIN: $DOMAIN"
+echo "GITHUB_REPO_URL: $GITHUB_REPO_URL"
+echo "S3_BUCKET: $S3_BUCKET"
 
 # --- Clone Static Site ---
 echo "📥 Cloning static site repo..."
