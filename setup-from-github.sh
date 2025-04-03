@@ -14,7 +14,10 @@ else
 fi
 
 # --- Configurable Setup (Do not prompt if .env file exists) ---
-# Use absolute path to avoid issues with $HOME and relative paths
+# Print current working directory to check where the script is running
+echo "Current working directory: $(pwd)"  # Debugging current directory
+
+# Use relative path for .env file
 ENV_FILE="./.env"  # Change this to the relative path for the .env file
 echo "Looking for .env at: $ENV_FILE"  # Added for debugging
 
