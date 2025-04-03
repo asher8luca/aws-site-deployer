@@ -18,7 +18,7 @@ fi
 echo "Current working directory: $(pwd)"  # Debugging current directory
 
 # Use relative path for .env file
-ENV_FILE="./.env"  # Change this to the relative path for the .env file
+ENV_FILE="./support-deployer-site/.env"  # Change this to the relative path for the .env file
 echo "Looking for .env at: $ENV_FILE"  # Added for debugging
 
 # Check if the .env file exists and load it
