@@ -14,7 +14,7 @@ else
 fi
 
 # --- Configurable Setup (Do not prompt if .env file exists) ---
-echo "Looking for .env in: $HOME/$DEPLOY_DIR/.env"  # Added for debugging
+echo "Looking for .env in: $DEPLOY_DIR/.env"  # Added for debugging
 if [ -f "$HOME/$DEPLOY_DIR/.env" ]; then
   # Load the existing .env file from the correct path
   source "$HOME/$DEPLOY_DIR/.env"
